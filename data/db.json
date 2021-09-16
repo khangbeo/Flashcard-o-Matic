@@ -11,8 +11,8 @@
       "id": 2
     },
     {
-      "name": "asldhaslkd",
-      "description": "asdasdsadas",
+      "name": "adsfasdf",
+      "description": "adsfasdfasdf",
       "id": 3
     }
   ],
@@ -46,18 +46,6 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
-    },
-    {
-      "front": "Hidasdasd",
-      "back": "Hiasdasd",
-      "deckId": 3,
-      "id": 9
-    },
-    {
-      "front": "Y",
-      "back": "Noooo",
-      "deckId": 3,
-      "id": 10
     },
     {
       "front": "dasd",

@@ -36,7 +36,7 @@ export default function Home() {
       </Link>
       {decks.map((deck) => {
         return (
-          <div className="card mb-4" key={deck.id}>
+          <div className="card mb-4 bg-light" key={deck.id}>
             <div className="card-body">
               <div className="row d-flex">
                 <div className="col">

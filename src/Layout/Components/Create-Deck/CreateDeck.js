@@ -25,7 +25,7 @@ export default function CreateDeck() {
     return response
   }
   return (
-    <>
+    <div className="container col-md-8 mx-auto">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -71,6 +71,6 @@ export default function CreateDeck() {
           Submit
         </button>
       </form>
-    </>
+    </div>
   )
 }

@@ -31,9 +31,9 @@ export default function Study() {
   }, [deckId])
 
   return (
-    <>
+    <div className="container col-md-8 mx-auto">
       <BreadCrumb deckId={deckId} deck={deck}/>
-      <div className="col-md-10 mx-auto mb-4">
+      <div className="mb-4">
           <h2>Study: {deck.name}</h2>
           <div>
             {cards.length === 0 
@@ -51,6 +51,6 @@ export default function Study() {
             }
           </div>
       </div>
-    </>
+    </div>
   )
 }

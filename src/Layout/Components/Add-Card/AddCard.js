@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { readDeck, createCard } from '../../../utils/api'
+import FormComponent from '../../FormComponent'
 
 export default function AddCard() {
   const { deckId } = useParams()
@@ -51,7 +52,7 @@ export default function AddCard() {
   }
 
   return (
-    <div>
+    <div className="container col-md-8 mx-auto">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
@@ -66,40 +67,15 @@ export default function AddCard() {
         </ol>
       </nav>
       <h2>{deck.name}: Add Card</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="front">Front</label>
-          <textarea
-            className="form-control"
-            id="front"
-            name="front"
-            rows="3"
-            placeholder="Front side of card"
-            onChange={handleChange}
-            value={formData.front}
-            required
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="back">Back</label>
-          <textarea
-            className="form-control"
-            id="back"
-            name="back"
-            rows="3"
-            placeholder="Back side of card"
-            onChange={handleChange}
-            value={formData.back}
-            required
-          ></textarea>
-        </div>
-        <Link to={`/decks/${deckId}`} className="btn btn-secondary mb-4 mr-3">
-          Done
-        </Link>
-        <button type="submit" className="btn btn-primary mb-4">
-          Save
-        </button>
-      </form>
+      <FormComponent 
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        front={formData.front}
+        back={formData.back}
+        deckId={deckId}
+        cancel={"Cancel"}
+        submit={"Submit"}
+      />
     </div>
   )
 }

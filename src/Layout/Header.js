@@ -3,14 +3,14 @@ import logo from './images/logo.png'
 
 function Header() {
   return (
-    <header className="jumbotron bg-dark rounded-0">
+    <header className="jumbotron-fluid bg-dark p-4 mb-4">
       <div className="container text-white">
         <div className="row d-flex justify-content-center flex-nowrap">
           <div className="col-sm-3">
             <img src={logo} className="img-fluid" alt="Responsive"></img>
           </div>
           <div className="col-sm-6 align-self-center">
-            <h1 className="display-4">Flashcard-o-matic</h1>
+            <h1 className="display-3">Flashcard-o-matic</h1>
             <p className="lead">Discover The Flashcard Difference.</p>
           </div>
         </div>

@@ -43,14 +43,14 @@ export default function EditDeck() {
   }
 
   return (
-    <div> 
+    <div className="container col-md-8 mx-auto"> 
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`decks/${deckId}`}>{name}</Link>
+            <Link to={`/decks/${deckId}`}>{name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Edit Deck

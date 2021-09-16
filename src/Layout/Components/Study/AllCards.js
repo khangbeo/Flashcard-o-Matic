@@ -50,7 +50,7 @@ export default function AllCards({
   }
 
   return (
-    <div className="card">
+    <div className="card bg-light">
       {cards.map((card, index) =>
         index === cardNumber - 1 ? (
           <div className="card-body" key={index}>
@@ -58,7 +58,7 @@ export default function AllCards({
               <div className="col-8">
                 {/* Restart Button */}
                 <button
-                  className="btn btn-info mb-2"
+                  className="btn btn-info mb-3"
                   onClick={() => restartCard(cards, index)}
                 >
                   Restart
