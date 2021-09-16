@@ -31,42 +31,43 @@ export default function Home() {
   }
   return (
     <div className="container col-md-8 mx-auto">
-      <Link className="btn btn-lg btn-success btn-block mb-3" to="/decks/new">
+      <Link className="btn btn-lg btn-success btn-block mb-4" to="/decks/new">
+        <i className="bi bi-plus-lg mr-2"></i>
         Create Deck
       </Link>
       {decks.map((deck) => {
         return (
-          <div className="card mb-4 bg-light" key={deck.id}>
-            <div className="card-body">
-              <div className="row d-flex">
-                <div className="col">
-                  <h5 className="card-title">{deck.name}</h5>
-                </div>
-                <div className="col">
-                  <h6 className="card-subtitle mb-2 text-muted text-right">
-                    {deck.cards.length} cards
-                  </h6>
-                </div>
-              </div>
+          <div
+            className="card mb-4 bg-light d-flex flex-lg-row flex-md-column"
+            key={deck.id}
+          >
+            <div className="card-header bg-dark text-light col-lg-4">
+              <h3 className="card-title">{deck.name}</h3>
+              <h5 className="card-subtitle">{deck.cards.length} cards</h5>
+            </div>
+            <div className="card-body col-lg-8">
               <p className="card-text">{deck.description}</p>
-              <div className="row d-flex">
+              <div className="row d-flex justify-content-around">
                 <Link
-                  className="btn btn-secondary col p-2 m-2"
+                  className="btn btn-secondary p-2 m-2"
                   to={`/decks/${deck.id}`}
                 >
+                  <i className="bi bi-eye mr-2" alt="eye"></i>
                   View
                 </Link>
                 <Link
-                  className="btn btn-primary col p-2 m-2"
+                  className="btn btn-primary p-2 m-2"
                   to={`/decks/${deck.id}/study`}
                 >
+                  <i className="bi bi-book mr-2" alt="book"></i>
                   Study
                 </Link>
                 <button
                   type="button"
-                  className="btn btn-danger col p-2 m-2"
+                  className="btn btn-danger p-2 m-2"
                   onClick={() => handleDelete(deck)}
                 >
+                  <i className="bi bi-trash mr-2" alt="trash"></i>
                   Delete
                 </button>
               </div>
