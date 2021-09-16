@@ -26,8 +26,8 @@ export default function EditCard() {
       }
     }
     getData()
-  }, [])
-
+  }, [deckId, cardId])
+ 
   const handleChange = ({ target }) => {
     setCard({
       ...card,
@@ -50,7 +50,7 @@ export default function EditCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`decks/${deckId}`}>Deck {deck.name}</Link>
+            <Link to={`/decks/${deckId}`}>Deck {deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Edit Card {card.id}

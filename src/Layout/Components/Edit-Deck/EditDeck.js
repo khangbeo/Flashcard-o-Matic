@@ -25,7 +25,7 @@ export default function EditDeck() {
       }
     }
     getData()
-  }, [])
+  }, [deckId])
 
   const handleChange = ({ target }) => {
     setDeck({

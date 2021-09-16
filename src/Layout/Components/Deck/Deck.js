@@ -26,7 +26,7 @@ export default function Deck() {
       }
     }
     getData()
-  }, [])
+  }, [deckId])
 
   async function handleDeleteDeck(deck) {
     if (window.confirm('Delete this deck?')) {

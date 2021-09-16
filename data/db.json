@@ -60,10 +60,52 @@
       "id": 10
     },
     {
-      "front": "Y",
-      "back": "Hifasasf",
-      "deckId": 3,
+      "front": "dasd",
+      "back": "asd",
+      "deckId": 1,
       "id": 11
+    },
+    {
+      "front": "asdadasd",
+      "back": "asdasd",
+      "deckId": 1,
+      "id": 12
+    },
+    {
+      "front": "gg",
+      "back": "gg",
+      "deckId": 1,
+      "id": 13
+    },
+    {
+      "front": "dsgasdg",
+      "back": "asdgadsg",
+      "deckId": 1,
+      "id": 14
+    },
+    {
+      "front": "asda",
+      "back": "asda",
+      "deckId": 1,
+      "id": 15
+    },
+    {
+      "front": "ddd",
+      "back": "ddddd",
+      "deckId": 1,
+      "id": 16
+    },
+    {
+      "front": "Hi there",
+      "back": "d",
+      "deckId": 1,
+      "id": 17
+    },
+    {
+      "front": "ddsad",
+      "back": "asdasd",
+      "deckId": 2,
+      "id": 18
     }
   ]
 }

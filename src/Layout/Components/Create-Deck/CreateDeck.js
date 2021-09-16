@@ -27,22 +27,22 @@ export default function CreateDeck() {
   return (
     <>
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">
+          <li className="breadcrumb-item active" aria-current="page">
             Create Deck
           </li>
         </ol>
       </nav>
       <h2>Create Deck</h2>
       <form onSubmit={(event) => handleSubmit(event)}>
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor="name">Name</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="name"
             name="name"
             placeholder="Deck Name"
@@ -51,10 +51,10 @@ export default function CreateDeck() {
             required
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
-            class="form-control"
+            className="form-control"
             id="description"
             name="description"
             rows="3"

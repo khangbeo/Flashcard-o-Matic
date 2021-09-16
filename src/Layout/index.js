@@ -41,7 +41,7 @@ function Layout() {
             <EditCard />
           </Route>
 
-          <Route path="/decks/:deckId">
+          <Route exact={true} path="/decks/:deckId">
             <Deck />
           </Route>
 

@@ -3,7 +3,7 @@ import logo from './images/logo.png'
 
 function Header() {
   return (
-    <header className="jumbotron bg-dark">
+    <header className="jumbotron bg-dark rounded-0">
       <div className="container text-white">
         <div className="row d-flex justify-content-center flex-nowrap">
           <div className="col-sm-3">

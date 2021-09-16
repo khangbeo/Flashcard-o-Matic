@@ -51,42 +51,41 @@ export default function AllCards({
 
   return (
     <div className="card">
-      {cards.map((card, index) => {
-        if (index === cardNumber - 1) {
-          return (
-            <div className="card-body" key={index}>
-              <div className="row d-flex justify-content-between">
-                <div className="col-8">
-                  {/* Restart Button */}
-                  <button
-                    className="btn btn-info mb-2"
-                    onClick={() => restartCard(cards, index)}
-                  >
-                    Restart
-                  </button>
-                  <h5 className="card-title">
-                    {`Card ${index + 1} of ${cards.length}`}
-                  </h5>
-                  <p className="card-text">{front ? card.front : card.back}</p>
+      {cards.map((card, index) =>
+        index === cardNumber - 1 ? (
+          <div className="card-body" key={index}>
+            <div className="row d-flex justify-content-between">
+              <div className="col-8">
+                {/* Restart Button */}
+                <button
+                  className="btn btn-info mb-2"
+                  onClick={() => restartCard(cards, index)}
+                >
+                  Restart
+                </button>
+                <h5 className="card-title">
+                  {`Card ${index + 1} of ${cards.length}`}
+                </h5>
+                <p className="card-text">{front ? card.front : card.back}</p>
 
-                  <button className="btn btn-secondary mx-1" onClick={flipCard}>
-                    Reveal Answer
-                  </button>
-                  {nextButton(cards, index)}
-                </div>
-                <div className="col-4">
-                  {
-                    <img
-                      src={front ? frontCard : backCard}
-                      className="img-fluid"
-                    ></img>
-                  }
-                </div>
+                <button className="btn btn-secondary mx-1" onClick={flipCard}>
+                  Flip
+                </button>
+                {nextButton(cards, index)}
+              </div>
+              <div className="col-4">
+                {
+                  <img
+                    src={front ? frontCard : backCard}
+                    className="img-fluid"
+                    alt="cards"
+                  ></img>
+                }
               </div>
             </div>
-          )
-        }
-      })}
+          </div>
+        ) : null,
+      )}
     </div>
   )
 }

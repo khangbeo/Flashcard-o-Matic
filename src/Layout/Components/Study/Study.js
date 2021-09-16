@@ -28,7 +28,7 @@ export default function Study() {
       }
     }
     getData()
-  }, [])
+  }, [deckId])
 
   return (
     <>

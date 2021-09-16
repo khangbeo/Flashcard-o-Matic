@@ -28,7 +28,7 @@ export default function AddCard() {
       }
     }
     getData()
-  }, [])
+  }, [deckId])
 
   const handleChange = ({ target }) => {
     setFormData({
@@ -40,15 +40,14 @@ export default function AddCard() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const abortController = new AbortController()
-    if (window.alert('Card Saved')) {
-      const response = await createCard(
-        deckId,
-        { ...formData },
-        abortController.signal,
-      )
-      return response
-    }
-    setFormData({...initialFormState})
+    const response = await createCard(
+      deckId,
+      { ...formData },
+      abortController.signal,
+    )
+    alert("Card Saved")
+    setFormData({ ...initialFormState })
+    return response
   }
 
   return (
@@ -59,7 +58,7 @@ export default function AddCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`decks/${deckId}`}>{deck.name}</Link>
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Add Card
