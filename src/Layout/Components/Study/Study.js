@@ -32,7 +32,7 @@ export default function Study() {
 
   return (
     <div className="container col-md-8 mx-auto">
-      <BreadCrumb deckId={deckId} deck={deck}/>
+      <BreadCrumb deckId={deckId} name={deck.name} screen={"Study"}/>
       <div className="mb-4">
           <h2>Study: {deck.name}</h2>
           <div>

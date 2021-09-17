@@ -30,7 +30,7 @@ export default function Home() {
     }
   }
   return (
-    <div className="container">
+    <main className="container">
       <Link className="btn btn-lg btn-success btn-block mb-4" to="/decks/new">
         <i className="bi bi-plus-lg mr-2"></i>
         Create Deck
@@ -71,6 +71,6 @@ export default function Home() {
           )
         })}
       </div>
-    </div>
+    </main>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { readDeck, deleteDeck, deleteCard } from '../../../utils/api'
+import BreadCrumb from '../Study/BreadCrumb'
 
 export default function Deck() {
   const { deckId } = useParams()
@@ -53,17 +54,8 @@ export default function Deck() {
   }
 
   return (
-    <div className="container col-md-8 mx-auto">
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            {deck.name}
-          </li>
-        </ol>
-      </nav>
+    <main className="container col-md-8 mx-auto">
+      <BreadCrumb name={deck.name}/>
 
       <div className="card-body">
         <h4 className="card-title">{deck.name}</h4>
@@ -90,7 +82,7 @@ export default function Deck() {
       </div>
       <div className="card-body">
         <h2 className="card-title">Cards</h2>
-        {cards.length !== 0 ? (
+        {cards.length > 0 ? (
           cards.map((card, index) => {
             return (
               <div className="card mb-4 bg-light" key={index}>
@@ -126,6 +118,6 @@ export default function Deck() {
           </>
         )}
       </div>
-    </div>
+    </main>
   )
 }

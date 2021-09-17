@@ -1,9 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { readDeck, createCard } from '../../../utils/api'
-import FormComponent from '../../FormComponent'
+import FormCard from '../../FormCard'
+import BreadCrumb from '../Study/BreadCrumb'
 
 export default function AddCard() {
   const { deckId } = useParams()
@@ -53,21 +53,9 @@ export default function AddCard() {
 
   return (
     <div className="container col-md-8 mx-auto">
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            Add Card
-          </li>
-        </ol>
-      </nav>
+      <BreadCrumb deckId={deckId} name={deck.name} screen={"Add Card"}/>
       <h2>{deck.name}: Add Card</h2>
-      <FormComponent 
+      <FormCard 
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         front={formData.front}
