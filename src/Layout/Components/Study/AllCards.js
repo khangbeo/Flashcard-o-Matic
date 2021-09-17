@@ -54,7 +54,7 @@ export default function AllCards({
       {cards.map((card, index) =>
         index === cardNumber - 1 ? (
           <div className="card-body" key={index}>
-            <div className="row d-flex justify-content-between">
+            <div className="d-flex flex-row justify-content-between">
               <div className="col-8">
                 {/* Restart Button */}
                 <button
