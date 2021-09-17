@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link, useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { readDeck, deleteDeck, deleteCard } from '../../../utils/api'
 import BreadCrumb from '../Study/BreadCrumb'
+import CardList from './CardList'
+import DeckInfo from './DeckInfo'
 
 export default function Deck() {
   const { deckId } = useParams()
@@ -56,68 +58,8 @@ export default function Deck() {
   return (
     <main className="container col-md-8 mx-auto">
       <BreadCrumb name={deck.name}/>
-
-      <div className="card-body">
-        <h4 className="card-title">{deck.name}</h4>
-        <p className="card-text">{deck.description}</p>
-        <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary mr-2">
-          Edit
-        </Link>
-        <Link to={`/decks/${deckId}/study`} className="btn btn-primary mr-2">
-          Study
-        </Link>
-        <Link
-          to={`/decks/${deckId}/cards/new`}
-          className="btn btn-primary mr-2"
-        >
-          Add Cards
-        </Link>
-        <button
-          type="button"
-          className="btn btn-danger "
-          onClick={() => handleDeleteDeck(deck)}
-        >
-          Delete
-        </button>
-      </div>
-      <div className="card-body">
-        <h2 className="card-title">Cards</h2>
-        {cards.length > 0 ? (
-          cards.map((card, index) => {
-            return (
-              <div className="card mb-4 bg-light" key={index}>
-                <div className="card-body d-flex flex-lg-row flex-column p-0">
-                  <div className="col bg-align-self-center p-4">
-                    <p>{card.front}</p>
-                  </div>
-                  <div className="col bg-info text-white p-4">
-                    <p>{card.back}</p>
-                    <div className="text-right">
-                      <Link
-                        to={`/decks/${deckId}/cards/${card.id}/edit`}
-                        className="btn btn-secondary mr-2"
-                      >
-                        Edit
-                      </Link>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDeleteCard(card)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })
-        ) : (
-          <>
-            <h4>No Cards</h4>
-            <p>Please add some cards to the deck</p>
-          </>
-        )}
-      </div>
+      <DeckInfo handleDelete={handleDeleteDeck} deck={deck} id={deckId} />
+      <CardList handleDelete={handleDeleteCard} cards={cards} id={deckId}/>
     </main>
   )
 }

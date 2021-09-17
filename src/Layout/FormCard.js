@@ -8,7 +8,7 @@ export default function FormComponent({
   back,
   deckId,
   cancel,
-  submit
+  submit,
 }) {
   return (
     <form onSubmit={handleSubmit}>

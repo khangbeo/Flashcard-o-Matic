@@ -1,7 +1,13 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function FormDeck({handleSubmit, handleChange, name, description, deckId}) {
+export default function FormDeck({
+  handleSubmit,
+  handleChange,
+  name,
+  description,
+  deckId,
+}) {
   return (
     <form onSubmit={(event) => handleSubmit(event)}>
       <div className="form-group">
@@ -30,7 +36,10 @@ export default function FormDeck({handleSubmit, handleChange, name, description,
           required
         ></textarea>
       </div>
-      <Link to={deckId ? `/decks/${deckId}` : '/'} className="btn btn-secondary mb-4 mr-3">
+      <Link
+        to={deckId ? `/decks/${deckId}` : '/'}
+        className="btn btn-secondary mb-4 mr-3"
+      >
         Cancel
       </Link>
       <button type="submit" className="btn btn-primary mb-4">

@@ -43,24 +43,6 @@
       "id": 5
     },
     {
-      "front": "dasd",
-      "back": "asd",
-      "deckId": 1,
-      "id": 11
-    },
-    {
-      "front": "asdadasd",
-      "back": "asdasd",
-      "deckId": 1,
-      "id": 12
-    },
-    {
-      "front": "gg",
-      "back": "gg",
-      "deckId": 1,
-      "id": 13
-    },
-    {
       "front": "EDITED CARD",
       "back": "BACK CARD",
       "deckId": 1,
