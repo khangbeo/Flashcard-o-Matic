@@ -3,17 +3,21 @@ import logo from './images/logo.png'
 
 function Header() {
   return (
-    <header className="jumbotron-fluid bg-dark p-4 mb-4">
-      <div className="container text-white">
-        <div className="d-flex flex-row justify-content-center flex-nowrap align-items-center">
-          <div className="col-sm-3">
-            <img src={logo} className="img-fluid" alt="Responsive"></img>
-          </div>
-          <div className="col-sm-6">
-            <h1 className="display-3">Flashcard-o-matic</h1>
+    <header className="container-fluid bg-dark py-4 mb-4">
+      <div className="text-white text-center">
+
+          <div>
+            <h1 className="display-4">
+              <img
+                src={logo}
+                alt="Responsive"
+                style={{ maxWidth: '10%' }}
+              ></img>
+              Flashcard-o-matic
+            </h1>
             <p className="lead">Discover The Flashcard Difference.</p>
           </div>
-        </div>
+
       </div>
     </header>
   )
