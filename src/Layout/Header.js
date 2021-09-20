@@ -7,7 +7,7 @@ function Header() {
       <div className="text-white text-center">
         <div>
           <h1 className="display-4">
-            <img src={logo} alt="Responsive" style={{ maxWidth: '10%' }}></img>
+            <img src={logo} alt="Responsive" style={{ maxWidth: '7%' }}></img>
             Flashcard-o-matic
           </h1>
           <p className="lead">Awesome Flashcards for Awesome People</p>

@@ -29,7 +29,7 @@ export default function AllCards({
     }
   }
 
-  function restartCard(index, total) {
+  function restartCard() {
     setCardNumber(1)
     setFront(true)
   }
