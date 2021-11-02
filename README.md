@@ -1,5 +1,8 @@
 # Flashcard-o-Matic 
 
+## Installation
+Fork and clone this repo, then run `npm install` for the associated dependencies.
+
 ## Basic Info
 I made a flashcard web app for the Thinkful front-end capstone project. The app allows users to create and edit their own deck of flashcards and study with the flashcards. Users can add more cards to the deck and edit the cards.
 
