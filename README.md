@@ -12,7 +12,7 @@ I was responsible for designing the layout of the app and implementing all funct
 The app was built with React, React Router, Bootstrap, HTML, and CSS. 
 
 ## Discoveries
-While making this app, I learned useful ways to use conditional rendering and setting up Routes using React Router to display multiple pages in a single page application. 
+Initially, I struggled with defining the layout of the project. To get over this hurdle, I sketched out what I thought the layout should look like and built each components one by one. The hardest part to design were the form components and their routes. I built individual components for the forms so I had a lot of repeated codes for AddCard/EditCard and AddDeck/EditDeck. I also had some difficulties with using the ternary operator to render the respective form components. Eventually, I figured I could chain ternary operators to show what I wanted in the forms. With that discovery, I was able to reduce the amount of code and components that I needed to design. The other components were easy to design as they were individual pieces and didn't need to show anything else. 
 
 ## Goals
 Future goals for the project:
