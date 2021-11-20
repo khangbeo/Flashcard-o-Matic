@@ -63,10 +63,10 @@ Future goals for the project:
 ![Edit Card](/images/edit-card.PNG)
 
 ## Delete Deck
-![Delete Deck](/images/delete-deck)
+![Delete Deck](/images/delete-deck.PNG)
 
 ## Delete Card
-![Delete Card](/images/delete-card)
+![Delete Card](/images/delete-card.PNG)
 
 ## Study
 ### Front
