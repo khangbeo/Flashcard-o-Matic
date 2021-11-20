@@ -16,7 +16,6 @@ Design the layout of the app and implemented all required functionalities.
 ## Routes
 | Screen      | Path                                                  |
 | ----------- | ----------------------------------------------------- |
-| Not Found   |                                                       |
 | Home        | /                                                     |
 | Deck        | /decks/:deckId                                        |
 | Create Deck | /decks/new                                            |
@@ -44,3 +43,6 @@ Future goals for the project:
 - rework card flipping functionalities
 - refactor and clean up code
 - refactor styling to move away from a generic design
+
+## Home
+![Home](/images/home.png)
