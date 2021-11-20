@@ -30,8 +30,8 @@ export default function Home() {
   async function handleDelete(deck) {
     const abortController = new AbortController()
     if (window.confirm('Delete this deck?')) {
+      await deleteDeck(deck.id, abortController.signal)
       history.go(0)
-      return await deleteDeck(deck.id, abortController.signal)
     }
   }
 
