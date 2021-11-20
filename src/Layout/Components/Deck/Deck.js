@@ -47,7 +47,7 @@ export default function Deck() {
       if (
         window.confirm('Delete this card? You will not be able to recover it!')
       ) {
-        history.push(`/decks/:deckId`)
+        history.push(`/`)
         return await deleteCard(card.id)
       }
     } catch (error) {
