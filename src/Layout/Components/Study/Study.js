@@ -4,13 +4,15 @@ import { useHistory, useParams } from 'react-router'
 import NoCards from './NoCards'
 import AllCards from './AllCards'
 import BreadCrumb from './BreadCrumb'
+import ReactLoading from 'react-loading'
 
 export default function Study() {
   const { deckId } = useParams()
   const [deck, setDeck] = useState({})
   const [cards, setCards] = useState([])
-  const [cardNumber, setCardNumber] = useState(1);
+  const [cardNumber, setCardNumber] = useState(1)
   const [front, setFront] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const history = useHistory()
 
   useEffect(() => {
@@ -20,6 +22,7 @@ export default function Study() {
         const response = await readDeck(deckId, abortController.signal)
         setDeck(response)
         setCards(response.cards)
+        setIsLoading(true)
       } catch (error) {
         console.log(error)
       }
@@ -32,14 +35,24 @@ export default function Study() {
 
   return (
     <div className="container col-md-8 mx-auto">
-      <BreadCrumb deckId={deckId} name={deck.name} screen={"Study"}/>
-      <div className="mb-4">
-          <h2>Study: {deck.name}</h2>
-          <div>
-            {cards.length === 0 
-              ? <NoCards cards={cards} deck={deck}/>
-              : cards.length > 2
-              ? <AllCards 
+      <BreadCrumb deckId={deckId} name={deck.name} screen={'Study'} />
+      {!isLoading ? (
+        <ReactLoading
+          type={'spin'}
+          color={'#000'}
+          width={100}
+          height={100}
+          className="mx-auto mt-5"
+        />
+      ) : (
+        <>
+          <div className="mb-4">
+            <h2>Study: {deck.name}</h2>
+            <div>
+              {cards.length === 0 ? (
+                <NoCards cards={cards} deck={deck} />
+              ) : cards.length > 2 ? (
+                <AllCards
                   cards={cards}
                   cardNumber={cardNumber}
                   front={front}
@@ -47,10 +60,13 @@ export default function Study() {
                   setCardNumber={setCardNumber}
                   history={history}
                 />
-              : <NoCards cards={cards} deck={deck}/>
-            }
+              ) : (
+                <NoCards cards={cards} deck={deck} />
+              )}
+            </div>
           </div>
-      </div>
+        </>
+      )}
     </div>
   )
 }

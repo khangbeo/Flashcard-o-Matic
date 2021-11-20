@@ -41,18 +41,6 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
-    },
-    {
-      "front": "EDITED CARD",
-      "back": "BACK CARD",
-      "deckId": 1,
-      "id": 14
-    },
-    {
-      "front": "ddsad",
-      "back": "asdasd",
-      "deckId": 2,
-      "id": 18
     }
   ]
 }
