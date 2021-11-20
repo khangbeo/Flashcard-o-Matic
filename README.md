@@ -14,16 +14,18 @@ The project was intended to be used as part of a study program using flashcards.
 Design the layout of the app and implemented all required functionalities. 
 
 ## Routes
-* Not Found
-* Home /
-* Deck /decks/:deckId
-* Create Deck /decks/new
-* Edit Deck /decks/:deckId/edit
-* Add Card /decks/:deckId/cards/new
-* Edit Card /decks/:deckId/cards/:cardId/edit
-* Study /decks/:deckId/study
-* Study /decks/:deckId/study clicking flip shows next button
-* Study /decks/:deckId/study not enough cards
+| Screen      | Path                                                  |
+| ----------- | ----------------------------------------------------- |
+| Not Found   |                                                       |
+| Home        | /                                                     |
+| Deck        | /decks/:deckId                                        |
+| Create Deck | /decks/new                                            |
+| Edit Deck   | /decks/:deckId/edit                                   |
+| Add Card    | /decks/:deckId/cards/new                              |
+| Edit Card   | /decks/:deckId/cards/:cardId/edit                     |
+| Study       | /decks/:deckId/study                                  |
+| Study       | /decks/:deckId/study clicking flip shows next button  |
+| Study       | /decks/:deckId/study not enough cards                 |
 
 ## Tech Stacks
 * React
