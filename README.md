@@ -46,3 +46,33 @@ Future goals for the project:
 
 ## Home
 ![Home](/images/home.PNG)
+
+## Deck
+![Deck](/images/deck-deckId.PNG)
+
+## Create Deck
+![Create Deck](/images/create-deck.PNG)
+
+## Edit Deck
+![Edit Deck](/images/edit-deck.PNG)
+
+## Add Card
+![Add Card](/images/add-card.PNG)
+
+## Edit Card
+![Edit Card](/images/edit-card.PNG)
+
+## Delete Deck
+![Delete Deck](/images/delete-deck)
+
+## Delete Card
+![Delete Card](/images/delete-card)
+
+## Study
+### Front
+![Study Front](/images/study.PNG)
+### Back
+![Study Back](/images/study-flip.PNG)
+### Not Enough Cards
+![No Cards](/images/not-enough-cards.PNG)
+
