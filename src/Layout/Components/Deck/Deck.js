@@ -51,7 +51,8 @@ export default function Deck() {
         window.confirm('Delete this card? You will not be able to recover it!')
       ) {
         await deleteCard(card.id)
-        history.go(0)
+        history.push('/')
+        history.replace(`/decks/${deckId}`)
       }
     } catch (error) {
       console.log(error)
