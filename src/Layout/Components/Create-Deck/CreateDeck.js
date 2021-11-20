@@ -16,7 +16,7 @@ export default function CreateDeck() {
 
   useEffect(() => {
     const controller = new AbortController()
-    setTimeout(() => setIsLoading(true), 1600)
+    setTimeout(() => setIsLoading(true), 1000)
     return () => {
       controller.abort()
     }
