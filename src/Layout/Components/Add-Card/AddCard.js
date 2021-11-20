@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { readDeck, createCard } from '../../../utils/api'
 import FormCard from '../../FormCard'
 import BreadCrumb from '../Study/BreadCrumb'
+import ReactLoading from 'react-loading'
 
 export default function AddCard() {
   const { deckId } = useParams()
@@ -12,6 +13,7 @@ export default function AddCard() {
     front: '',
     back: '',
   }
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({ ...initialFormState })
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export default function AddCard() {
       try {
         const response = await readDeck(deckId, abortController.signal)
         setDeck(response)
+        setLoading(true)
       } catch (error) {
         console.log(error)
       }
@@ -46,24 +49,36 @@ export default function AddCard() {
       { ...formData },
       abortController.signal,
     )
-    alert("Card Saved")
+    alert('Card Saved')
     setFormData({ ...initialFormState })
     return response
   }
 
   return (
     <div className="container col-md-8 mx-auto">
-      <BreadCrumb deckId={deckId} name={deck.name} screen={"Add Card"}/>
-      <h2>{deck.name}: Add Card</h2>
-      <FormCard 
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        front={formData.front}
-        back={formData.back}
-        deckId={deckId}
-        cancel={"Cancel"}
-        submit={"Submit"}
-      />
+      {!loading ? (
+        <ReactLoading
+          type={'spin'}
+          color={'#000'}
+          width={100}
+          height={100}
+          className="mx-auto mt-5"
+        />
+      ) : (
+        <>
+          <BreadCrumb deckId={deckId} name={deck.name} screen={'Add Card'} />
+          <h2>{deck.name}: Add Card</h2>
+          <FormCard
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            front={formData.front}
+            back={formData.back}
+            deckId={deckId}
+            cancel={'Cancel'}
+            submit={'Submit'}
+          />
+        </>
+      )}
     </div>
   )
 }
