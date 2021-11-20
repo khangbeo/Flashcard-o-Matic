@@ -45,4 +45,4 @@ Future goals for the project:
 - refactor styling to move away from a generic design
 
 ## Home
-![Home](/images/home.png)
+![Home](./images/home.png)
