@@ -1,5 +1,9 @@
 # Flashcard-o-Matic 
 
+## Links
+* Json-server: https://github.com/khangbeo/Flashcard-json-server
+* Deployed app: https://flashcard-o-matic.netlify.app/
+
 ## Installation
 Fork and clone this repo, then run `npm install` for the associated dependencies.
 
