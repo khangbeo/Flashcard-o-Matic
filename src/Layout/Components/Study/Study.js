@@ -3,8 +3,9 @@ import { readDeck } from '../../../utils/api'
 import { useHistory, useParams } from 'react-router'
 import NoCards from './NoCards'
 import AllCards from './AllCards'
-import BreadCrumb from './BreadCrumb'
+import BreadCrumb from '../Shared/BreadCrumb'
 import ReactLoading from 'react-loading'
+import ErrorAlert from '../Shared/ErrorAlert'
 
 export default function Study() {
   const { deckId } = useParams()
@@ -13,28 +14,35 @@ export default function Study() {
   const [cardNumber, setCardNumber] = useState(1)
   const [front, setFront] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
   const history = useHistory()
 
   useEffect(() => {
-    async function getData() {
-      const abortController = new AbortController()
-      try {
-        const response = await readDeck(deckId, abortController.signal)
-        setDeck(response)
-        setCards(response.cards)
-        setIsLoading(true)
-      } catch (error) {
-        console.log(error)
-      }
-      return () => {
-        abortController.abort()
-      }
-    }
-    getData()
+    setError(null)
+    setDeck({})
+    setCards([])
+    getData(deckId)
   }, [deckId])
+  
+  async function getData(deckId) {
+    const abortController = new AbortController()
+    try {
+      const response = await readDeck(deckId, abortController.signal)
+      setDeck(response)
+      setCards(response.cards)
+      setIsLoading(true)
+    } catch (error) {
+      console.log(error)
+      setError(error)
+    }
+    return () => {
+      abortController.abort()
+    }
+  }
 
   return (
     <div className="container col-md-8 mx-auto">
+      <ErrorAlert error={error} />
       {!isLoading ? (
         <ReactLoading
           type={'spin'}

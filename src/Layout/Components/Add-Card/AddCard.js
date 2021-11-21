@@ -2,9 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router'
 import { useState, useEffect } from 'react'
 import { readDeck, createCard } from '../../../utils/api'
-import FormCard from '../../FormCard'
-import BreadCrumb from '../Study/BreadCrumb'
 import ReactLoading from 'react-loading'
+import BreadCrumb from '../Shared/BreadCrumb'
+import FormCard from '../Shared/FormCard'
+import ErrorAlert from '../Shared/ErrorAlert'
 
 export default function AddCard() {
   const { deckId } = useParams()
@@ -15,24 +16,28 @@ export default function AddCard() {
   }
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({ ...initialFormState })
+  const [error, setError] = useState(null)
 
   useEffect(() => {
+    setError(null)
     setDeck({})
-    async function getData() {
-      const abortController = new AbortController()
-      try {
-        const response = await readDeck(deckId, abortController.signal)
-        setDeck(response)
-        setLoading(true)
-      } catch (error) {
-        console.log(error)
-      }
-      return () => {
-        abortController.abort()
-      }
-    }
-    getData()
+    getData(deckId)
   }, [deckId])
+
+  async function getData(deckId) {
+    const abortController = new AbortController()
+    try {
+      const response = await readDeck(deckId, abortController.signal)
+      setDeck(response)
+      setLoading(true)
+    } catch (error) {
+      console.log(error)
+      setError(error)
+    }
+    return () => {
+      abortController.abort()
+    }
+  }
 
   const handleChange = ({ target }) => {
     setFormData({
@@ -56,6 +61,7 @@ export default function AddCard() {
 
   return (
     <div className="container col-md-8 mx-auto">
+      <ErrorAlert error={error} />
       {!loading ? (
         <ReactLoading
           type={'spin'}

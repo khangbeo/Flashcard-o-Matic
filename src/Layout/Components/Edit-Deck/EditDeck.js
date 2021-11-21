@@ -2,35 +2,40 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { readDeck, updateDeck } from '../../../utils/api'
-import FormDeck from '../../FormDeck'
-import BreadCrumb from '../Study/BreadCrumb'
+import FormDeck from '../Shared/FormDeck'
+import BreadCrumb from '../Shared/BreadCrumb'
 import ReactLoading from 'react-loading'
+import ErrorAlert from '../Shared/ErrorAlert'
 
 export default function EditDeck() {
   const { deckId } = useParams()
   const [deck, setDeck] = useState({})
   const [name, setName] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
   const history = useHistory()
 
   useEffect(() => {
+    setError(null)
     setDeck({})
-    async function getData() {
-      const abortController = new AbortController()
-      try {
-        const response = await readDeck(deckId, abortController.signal)
-        setDeck(response)
-        setName(response.name)
-        setLoading(true)
-      } catch (error) {
-        console.log(error)
-      }
-      return () => {
-        abortController.abort()
-      }
-    }
-    getData()
+    getData(deckId)
   }, [deckId])
+
+  async function getData(deckId) {
+    const abortController = new AbortController()
+    try {
+      const response = await readDeck(deckId, abortController.signal)
+      setDeck(response)
+      setName(response.name)
+      setLoading(true)
+    } catch (error) {
+      console.log(error)
+      setError(error)
+    }
+    return () => {
+      abortController.abort()
+    }
+  }
 
   const handleChange = ({ target }) => {
     setDeck({
@@ -49,6 +54,7 @@ export default function EditDeck() {
 
   return (
     <div className="container col-md-8 mx-auto">
+      <ErrorAlert error={error} />
       {!loading ? (
         <ReactLoading
           type={'spin'}

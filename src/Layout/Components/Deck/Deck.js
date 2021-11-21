@@ -2,10 +2,11 @@ import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { readDeck, deleteDeck, deleteCard } from '../../../utils/api'
-import BreadCrumb from '../Study/BreadCrumb'
+import BreadCrumb from '../Shared/BreadCrumb'
 import CardList from './CardList'
 import DeckInfo from './DeckInfo'
 import ReactLoading from 'react-loading'
+import ErrorAlert from '../Shared/ErrorAlert'
 
 export default function Deck() {
   const { deckId } = useParams()
@@ -13,26 +14,30 @@ export default function Deck() {
   const [deck, setDeck] = useState({})
   const [cards, setCards] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
+    setError(null)
     setDeck({})
     setCards([])
-    async function getData() {
-      const abortController = new AbortController()
-      try {
-        const response = await readDeck(deckId, abortController.signal)
-        setDeck(response)
-        setCards(response.cards)
-        setIsLoading(true)
-      } catch (error) {
-        console.log(error)
-      }
-      return () => {
-        abortController.abort()
-      }
-    }
-    getData()
+    getData(deckId)
   }, [deckId])
+
+  async function getData(deckId) {
+    const abortController = new AbortController()
+    try {
+      const response = await readDeck(deckId, abortController.signal)
+      setDeck(response)
+      setCards(response.cards)
+      setIsLoading(true)
+    } catch (error) {
+      console.log(error)
+      setError(error)
+    }
+    return () => {
+      abortController.abort()
+    }
+  }
 
   async function handleDeleteDeck(deck) {
     try {
@@ -51,8 +56,7 @@ export default function Deck() {
         window.confirm('Delete this card? You will not be able to recover it!')
       ) {
         await deleteCard(card.id)
-        history.push('/')
-        history.replace(`/decks/${deckId}`)
+        return await getData(deckId)
       }
     } catch (error) {
       console.log(error)
@@ -61,6 +65,7 @@ export default function Deck() {
 
   return (
     <main className="container col-md-8 mx-auto">
+      <ErrorAlert error={error} />
       <BreadCrumb name={deck.name} />
       {!isLoading ? (
         <ReactLoading

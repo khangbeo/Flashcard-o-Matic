@@ -1,5 +1,6 @@
 import frontCard from '../../images/frontCard.png'
 import backCard from '../../images/backCard.png'
+
 export default function AllCards({
   cards,
   cardNumber,

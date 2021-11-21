@@ -1,8 +1,8 @@
 import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { createDeck } from '../../../utils/api'
-import BreadCrumb from '../Study/BreadCrumb'
-import FormDeck from '../../FormDeck'
+import BreadCrumb from '../Shared/BreadCrumb'
+import FormDeck from '../Shared/FormDeck'
 import ReactLoading from 'react-loading'
 
 export default function CreateDeck() {
@@ -16,7 +16,7 @@ export default function CreateDeck() {
 
   useEffect(() => {
     const controller = new AbortController()
-    setTimeout(() => setIsLoading(true), 800)
+    setTimeout(() => setIsLoading(true), 500)
     return () => {
       controller.abort()
     }

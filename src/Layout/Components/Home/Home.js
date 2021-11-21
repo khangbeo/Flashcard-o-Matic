@@ -1,42 +1,44 @@
 import { listDecks, deleteDeck } from '../../../utils/api'
-import { useHistory } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import HomeScreen from './HomeScreen'
 import ReactLoading from 'react-loading'
+import ErrorAlert from '../Shared/ErrorAlert'
 
 export default function Home() {
   const [decks, setDecks] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const history = useHistory()
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    async function getData() {
-      const abortController = new AbortController()
-      try {
-        const response = await listDecks(abortController.signal)
-        setDecks(response)
-        setIsLoading(true)
-      } catch (error) {
-        console.log(error)
-      }
-
-      return () => {
-        abortController.abort()
-      }
-    }
     getData()
   }, [])
+
+  async function getData() {
+    const abortController = new AbortController()
+    try {
+      const response = await listDecks(abortController.signal)
+      setDecks(response)
+      setIsLoading(true)
+    } catch (error) {
+      console.log(error)
+      setError(error)
+    }
+    return () => {
+      abortController.abort()
+    }
+  }
 
   async function handleDelete(deck) {
     const abortController = new AbortController()
     if (window.confirm('Delete this deck?')) {
       await deleteDeck(deck.id, abortController.signal)
-      history.go(0)
+      return await getData()
     }
   }
 
   return (
     <>
+      <ErrorAlert error={error} />
       {!isLoading ? (
         <ReactLoading
           type={'spin'}

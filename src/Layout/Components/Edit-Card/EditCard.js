@@ -2,9 +2,10 @@ import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { readDeck, readCard, updateCard } from '../../../utils/api'
-import FormCard from '../../FormCard'
-import BreadCrumb from '../Study/BreadCrumb'
+import FormCard from '../Shared/FormCard'
+import BreadCrumb from '../Shared/BreadCrumb'
 import ReactLoading from 'react-loading'
+import ErrorAlert from '../Shared/ErrorAlert'
 
 export default function EditCard() {
   const { deckId, cardId } = useParams()
@@ -12,26 +13,30 @@ export default function EditCard() {
   const [deck, setDeck] = useState({})
   const [card, setCard] = useState({})
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
+    setError(null)
     setDeck({})
-    async function getData() {
-      const abortController = new AbortController()
-      try {
-        const deckFromAPI = await readDeck(deckId, abortController.signal)
-        const cardFromAPI = await readCard(cardId, abortController.signal)
-        setDeck(deckFromAPI)
-        setCard(cardFromAPI)
-        setLoading(true)
-      } catch (error) {
-        console.log(error)
-      }
-      return () => {
-        abortController.abort()
-      }
-    }
-    getData()
+    getData(deckId, cardId)
   }, [deckId, cardId])
+
+  async function getData(deckId, cardId) {
+    const abortController = new AbortController()
+    try {
+      const deckFromAPI = await readDeck(deckId, abortController.signal)
+      const cardFromAPI = await readCard(cardId, abortController.signal)
+      setDeck(deckFromAPI)
+      setCard(cardFromAPI)
+      setLoading(true)
+    } catch (error) {
+      console.log(error)
+      setError(error)
+    }
+    return () => {
+      abortController.abort()
+    }
+  }
 
   const handleChange = ({ target }) => {
     setCard({
@@ -50,6 +55,7 @@ export default function EditCard() {
 
   return (
     <div className="container col-md-8 mx-auto">
+      <ErrorAlert error={error} />
       {!loading ? (
         <ReactLoading
           type={'spin'}
