@@ -240,10 +240,12 @@ describe("Decks", () => {
             screen.getByText("What did one plate say to the other plate?")
         ).toBeTruthy();
 
-        // Click the Flip button to show the back of the card
-        const flipButton = screen.getByText("Flip");
+        // Click the card content to flip the card
+        const cardContent = screen
+            .getByText("What did one plate say to the other plate?")
+            .closest(".study-card-content");
         await act(async () => {
-            await userEvent.click(flipButton);
+            await userEvent.click(cardContent);
         });
 
         // Now check for the back text

@@ -23,38 +23,57 @@ jest.mock("../utils/api");
 describe("App", () => {
     beforeEach(() => {
         createCard.mockResolvedValue({
+            id: 1,
             front: "Default mock response. If you see this, you probably do not need this API call.",
+            back: "Back of card",
+            deckId: 1,
         });
         createDeck.mockResolvedValue({
+            id: 1,
             name: "Default mock response. If you see this, you probably do not need this API call.",
+            description: "Description",
         });
-        deleteCard.mockResolvedValue({
-            front: "Default mock response. If you see this, you probably do not need this API call.",
-        });
-        deleteDeck.mockResolvedValue({
-            name: "Default mock response. If you see this, you probably do not need this API call.",
-        });
+        deleteCard.mockResolvedValue({});
+        deleteDeck.mockResolvedValue({});
         listCards.mockResolvedValue([
             {
+                id: 1,
                 front: "Default mock response. If you see this, you probably do not need this API call.",
+                back: "Back of card",
+                deckId: 1,
             },
         ]);
         listDecks.mockResolvedValue([
             {
-                front: "Default mock response. If you see this, you probably do not need this API call.",
+                id: 1,
+                name: "Default mock response. If you see this, you probably do not need this API call.",
+                description: "Description",
+                cards: [],
             },
         ]);
         readCard.mockResolvedValue({
+            id: 1,
             front: "Default mock response. If you see this, you probably do not need this API call.",
+            back: "Back of card",
+            deckId: 1,
         });
         readDeck.mockResolvedValue({
+            id: 1,
             name: "Default mock response. If you see this, you probably do not need this API call.",
+            description: "Description",
+            cards: [],
         });
         updateCard.mockResolvedValue({
+            id: 1,
             front: "Default mock response. If you see this, you probably do not need this API call.",
+            back: "Back of card",
+            deckId: 1,
         });
         updateDeck.mockResolvedValue({
+            id: 1,
             name: "Default mock response. If you see this, you probably do not need this API call.",
+            description: "Description",
+            cards: [],
         });
     });
 
@@ -83,17 +102,15 @@ describe("App", () => {
             },
         ];
 
-        const mockDecksPromise = Promise.resolve(mockDecks);
+        listDecks.mockResolvedValue(mockDecks);
 
-        listDecks.mockImplementation(() => mockDecksPromise);
-
-        render(
-            <MemoryRouter initialEntries={["/"]}>
-                <App />
-            </MemoryRouter>
-        );
-
-        await act(() => mockDecksPromise);
+        await act(async () => {
+            render(
+                <MemoryRouter initialEntries={["/"]}>
+                    <App />
+                </MemoryRouter>
+            );
+        });
 
         expect(screen.getByText("Mock Rendering in React")).toBeTruthy();
         expect(screen.getByText("2 cards")).toBeTruthy();
