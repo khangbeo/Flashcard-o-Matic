@@ -4,6 +4,7 @@ import { createDeck } from "../../../utils/api";
 import BreadCrumb from "../Shared/BreadCrumb";
 import FormDeck from "../Shared/FormDeck";
 import ReactLoading from "react-loading";
+import "./CreateDeck.css";
 
 export default function CreateDeck() {
     const navigate = useNavigate();
@@ -41,25 +42,35 @@ export default function CreateDeck() {
     };
 
     return (
-        <div className="container col-md-8 mx-auto">
+        <div className="container py-4">
             {!isLoading ? (
-                <ReactLoading
-                    type={"spin"}
-                    color={"#000"}
-                    width={100}
-                    height={100}
-                    className="mx-auto mt-5"
-                />
+                <div className="loading-container">
+                    <ReactLoading
+                        type={"spin"}
+                        color={"#0d6efd"}
+                        width={100}
+                        height={100}
+                    />
+                </div>
             ) : (
                 <>
                     <BreadCrumb name={"Create Deck"} />
-                    <h2>Create Deck</h2>
-                    <FormDeck
-                        handleSubmit={handleSubmit}
-                        handleChange={handleChange}
-                        name={formData.name}
-                        description={formData.description}
-                    />
+                    <div className="create-deck-header mb-4">
+                        <h2 className="h2 mb-2">Create New Deck</h2>
+                        <p className="text-muted mb-0">
+                            Add a new deck to your collection
+                        </p>
+                    </div>
+                    <div className="card shadow-sm">
+                        <div className="card-body">
+                            <FormDeck
+                                handleSubmit={handleSubmit}
+                                handleChange={handleChange}
+                                name={formData.name}
+                                description={formData.description}
+                            />
+                        </div>
+                    </div>
                 </>
             )}
         </div>

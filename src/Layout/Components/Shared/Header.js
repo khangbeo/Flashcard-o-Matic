@@ -1,20 +1,19 @@
-import React from 'react'
-import logo from '../../images/logo.png'
+import React from "react";
+import "./Header.css";
 
 function Header() {
-  return (
-    <header className="container-fluid bg-dark py-4 mb-4">
-      <div className="text-white text-center">
-        <div>
-          <h1 className="display-4">
-            <img src={logo} alt="Responsive" style={{ maxWidth: '7%' }}></img>
-            Flashcard-o-matic
-          </h1>
-          <p className="lead">Awesome Flashcards for Awesome People</p>
-        </div>
-      </div>
-    </header>
-  )
+    return (
+        <header className="header">
+            <div className="header-content">
+                <div className="header-brand">
+                    <h1 className="header-title">
+                        <span className="highlight">StudyCards</span>
+                    </h1>
+                </div>
+                <p className="header-tagline">Simple, effective study cards</p>
+            </div>
+        </header>
+    );
 }
 
-export default Header
+export default Header;

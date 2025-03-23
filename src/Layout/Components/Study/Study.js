@@ -6,6 +6,7 @@ import AllCards from "./AllCards";
 import BreadCrumb from "../Shared/BreadCrumb";
 import ReactLoading from "react-loading";
 import ErrorAlert from "../Shared/ErrorAlert";
+import "./Study.css";
 
 export default function Study() {
     const { deckId } = useParams();
@@ -41,16 +42,17 @@ export default function Study() {
     }
 
     return (
-        <div className="container col-md-8 mx-auto">
+        <div className="study-container">
             <ErrorAlert error={error} />
             {!isLoading ? (
-                <ReactLoading
-                    type={"spin"}
-                    color={"#000"}
-                    width={100}
-                    height={100}
-                    className="mx-auto mt-5"
-                />
+                <div className="loading-container">
+                    <ReactLoading
+                        type={"spin"}
+                        color={"#0d6efd"}
+                        width={100}
+                        height={100}
+                    />
+                </div>
             ) : (
                 <>
                     <BreadCrumb
@@ -58,24 +60,24 @@ export default function Study() {
                         name={deck.name}
                         screen={"Study"}
                     />
-                    <div className="mb-4">
-                        <h2>Study: {deck.name}</h2>
-                        <div>
-                            {cards.length === 0 ? (
-                                <NoCards cards={cards} deck={deck} />
-                            ) : cards.length > 2 ? (
-                                <AllCards
-                                    cards={cards}
-                                    cardNumber={cardNumber}
-                                    front={front}
-                                    setFront={setFront}
-                                    setCardNumber={setCardNumber}
-                                    navigate={navigate}
-                                />
-                            ) : (
-                                <NoCards cards={cards} deck={deck} />
-                            )}
-                        </div>
+                    <div className="study-header">
+                        <h2 className="study-title">Study: {deck.name}</h2>
+                    </div>
+                    <div>
+                        {cards.length === 0 ? (
+                            <NoCards cards={cards} deck={deck} />
+                        ) : cards.length > 2 ? (
+                            <AllCards
+                                cards={cards}
+                                cardNumber={cardNumber}
+                                front={front}
+                                setFront={setFront}
+                                setCardNumber={setCardNumber}
+                                navigate={navigate}
+                            />
+                        ) : (
+                            <NoCards cards={cards} deck={deck} />
+                        )}
                     </div>
                 </>
             )}

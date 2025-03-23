@@ -1,5 +1,4 @@
-import frontCard from "../../images/frontCard.png";
-import backCard from "../../images/backCard.png";
+import "./Study.css";
 
 export default function AllCards({
     cards,
@@ -16,20 +15,17 @@ export default function AllCards({
             setFront(true);
         }
     }
+
     function nextCard(index, total) {
-        if (index < total) {
+        if (index + 1 <= total) {
             setCardNumber(cardNumber + 1);
             setFront(true);
         } else {
-            if (
-                window.confirm(
-                    "Restart? Click cancel to return to the home page."
-                )
-            ) {
+            if (window.confirm("Are you sure you want to restart?")) {
                 setCardNumber(1);
                 setFront(true);
             } else {
-                navigate("/");
+                window.location.href = "/";
             }
         }
     }
@@ -39,59 +35,45 @@ export default function AllCards({
         setFront(true);
     }
 
-    function nextButton(cards, index) {
-        if (front) {
-            return null;
-        } else {
-            return (
-                <button
-                    className="btn btn-primary mx-1"
-                    onClick={() => nextCard(index + 1, cards.length)}
-                >
-                    Next
-                </button>
-            );
-        }
-    }
-
     return (
-        <div className="card bg-light">
+        <div className="study-card">
             {cards.map((card, index) =>
                 index === cardNumber - 1 ? (
-                    <div className="card-body" key={index}>
-                        <div className="d-flex flex-row justify-content-between">
-                            <div className="col-8">
-                                {/* Restart Button */}
-                                <button
-                                    className="btn btn-info mb-3"
-                                    onClick={() => restartCard(cards, index)}
-                                >
-                                    Restart
-                                </button>
-                                <h5 className="card-title">
-                                    {`Card ${index + 1} of ${cards.length}`}
-                                </h5>
-                                <p className="card-text">
-                                    {front ? card.front : card.back}
-                                </p>
-
-                                <button
-                                    className="btn btn-secondary mx-1"
-                                    onClick={flipCard}
-                                >
-                                    Flip
-                                </button>
-                                {nextButton(cards, index)}
+                    <div className="study-card-body" key={index}>
+                        <div className="study-card-header">
+                            <h5 className="study-card-title">
+                                Card {index + 1} of {cards.length}
+                            </h5>
+                            <button
+                                className="study-button restart"
+                                onClick={() => restartCard()}
+                            >
+                                <i className="bi bi-arrow-counterclockwise"></i>
+                                Restart
+                            </button>
+                        </div>
+                        <div
+                            className={`study-card-content ${
+                                front ? "front" : "back"
+                            }`}
+                            onClick={flipCard}
+                        >
+                            <div className="study-card-text">
+                                {front ? card.front : card.back}
                             </div>
-                            <div className="col-4">
-                                {
-                                    <img
-                                        src={front ? frontCard : backCard}
-                                        className="img-fluid"
-                                        alt="cards"
-                                    ></img>
-                                }
-                            </div>
+                        </div>
+                        <div className="study-card-actions">
+                            {!front && (
+                                <button
+                                    className="study-button next"
+                                    onClick={() =>
+                                        nextCard(index + 1, cards.length)
+                                    }
+                                >
+                                    <i className="bi bi-arrow-right"></i>
+                                    Next
+                                </button>
+                            )}
                         </div>
                     </div>
                 ) : null

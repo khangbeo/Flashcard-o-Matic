@@ -2,17 +2,9 @@
  * Defines the base URL for the API.
  * Uses the remote server by default, falls back to localhost if not available.
  */
-console.log("All environment variables:", process.env);
-console.log(
-    "API Base URL environment variable:",
-    process.env.REACT_APP_API_BASE_URL
-);
-console.log("Node environment:", process.env.NODE_ENV);
 
 const API_BASE_URL =
     process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
-
-console.log("Final API Base URL:", API_BASE_URL);
 
 /**
  * Defines the default headers for these functions to work with `json-server`

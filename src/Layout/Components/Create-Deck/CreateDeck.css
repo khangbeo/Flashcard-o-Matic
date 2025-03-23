@@ -1,0 +1,33 @@
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.create-deck-header {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.create-deck-header h2 {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.card {
+    max-width: 800px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 1rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem;
+    }
+}
