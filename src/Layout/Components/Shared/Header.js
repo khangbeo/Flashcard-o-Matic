@@ -7,7 +7,7 @@ function Header() {
             <div className="header-content">
                 <div className="header-brand">
                     <h1 className="header-title">
-                        <span className="highlight">StudyCards</span>
+                        <span className="highlight">StudyCarrd</span>
                     </h1>
                 </div>
                 <p className="header-tagline">Simple, effective study cards</p>
